@@ -1,17 +1,15 @@
 package pckg.Class;
 
+import pckg.Interface.IContentOperation;
 import pckg.Interface.IValidator;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Validator implements IValidator {
 
     private String fileName;
+    private IContentOperation contentOperation;
 
-    public Validator(String fileName) {
+    public Validator(String fileName,IContentOperation contentOperation) {
+        this.contentOperation = contentOperation;
         this.fileName = fileName;
     }
 
@@ -41,17 +39,15 @@ public class Validator implements IValidator {
 
     @Override
     public boolean isContentEmpty(String fileContent) throws IllegalArgumentException {
-             String unCommentedContent = getUncommentedContent(fileContent);
+             String unCommentedContent = contentOperation.getUncommentedContent(fileContent);
             if (fileContent.isEmpty() || unCommentedContent.isEmpty()){
             throw new IllegalArgumentException("File is empty");
         }
         return true;
     }
 
-    private String getUncommentedContent(String fileContent) {
-     String unCommentedContent = fileContent.replaceAll("(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)","");
-     return unCommentedContent;
-    }
+
+
 
 //    @Override
 //    public boolean isFileExist() throws IllegalArgumentException {
