@@ -1,11 +1,11 @@
 package pckg.Class;
 
-import pckg.Interface.IContentOperation;
+import pckg.Interface.IFileContentOperation;
 
 import java.io.*;
 
 public class Reader {
-    private IContentOperation contentOperation;
+    private IFileContentOperation contentOperation;
     private String filePath;
 
     public Reader(String filePath) {

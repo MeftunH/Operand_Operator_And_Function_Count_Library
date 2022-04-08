@@ -1,8 +1,8 @@
 package pckg.Class;
 
-import pckg.Interface.IContentOperation;
+import pckg.Interface.IFileContentOperation;
 
-public class ContentOperation implements IContentOperation {
+public class FileContentOperation implements IFileContentOperation {
 
     @Override
     public String getUncommentedContent(String fileContent) {

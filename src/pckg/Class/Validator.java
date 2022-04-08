@@ -1,14 +1,14 @@
 package pckg.Class;
 
-import pckg.Interface.IContentOperation;
+import pckg.Interface.IFileContentOperation;
 import pckg.Interface.IValidator;
 
 public class Validator implements IValidator {
 
     private String fileName;
-    private IContentOperation contentOperation;
+    private IFileContentOperation contentOperation;
 
-    public Validator(String fileName,IContentOperation contentOperation) {
+    public Validator(String fileName, IFileContentOperation contentOperation) {
         this.contentOperation = contentOperation;
         this.fileName = fileName;
     }

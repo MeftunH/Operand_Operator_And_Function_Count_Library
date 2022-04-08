@@ -1,5 +1,5 @@
 package pckg.Interface;
 
-public interface IContentOperation {
+public interface IFileContentOperation {
     public String getUncommentedContent(String fileContent);
 }
