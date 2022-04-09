@@ -1,10 +1,21 @@
 package pckg.Class;
 
-import pckg.Interface.IFileContentOperation;
+public class FileContentOperation {
 
-public class FileContentOperation implements IFileContentOperation {
+    protected String uncommentedContent;
 
-    @Override
+    public String getUncommentedContent() {
+        return uncommentedContent;
+    }
+
+    public void setUncommentedContent(String uncommentedContent) {
+        this.uncommentedContent = uncommentedContent;
+    }
+
+    public FileContentOperation(String uncommentedContent) {
+        this.uncommentedContent = uncommentedContent;
+    }
+
     public String getUncommentedContent(String fileContent) {
         String unCommentedContent = fileContent.replaceAll("(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)","");
         return unCommentedContent;

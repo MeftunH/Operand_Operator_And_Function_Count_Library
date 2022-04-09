@@ -1,15 +1,12 @@
 package pckg.Class;
 
-import pckg.Interface.IFileContentOperation;
-import pckg.Interface.IValidator;
-
-public class Validator implements IValidator {
+public class Validator {
 
     private String fileName;
-    private IFileContentOperation contentOperation;
+    private FileContentOperation contentOperation;
 
-    public Validator(String fileName, IFileContentOperation contentOperation) {
-        this.contentOperation = contentOperation;
+    public Validator(String fileName) {
+        this.contentOperation = new FileContentOperation(fileName);
         this.fileName = fileName;
     }
 
@@ -21,7 +18,6 @@ public class Validator implements IValidator {
         this.fileName = fileName;
     }
 
-    @Override
     public boolean isJavaFile() throws IllegalArgumentException {
 
         String extension = getFileExtension(getFileName());
@@ -37,7 +33,6 @@ public class Validator implements IValidator {
         return extension;
     }
 
-    @Override
     public boolean isContentEmpty(String fileContent) throws IllegalArgumentException {
              String unCommentedContent = contentOperation.getUncommentedContent(fileContent);
             if (fileContent.isEmpty() || unCommentedContent.isEmpty()){

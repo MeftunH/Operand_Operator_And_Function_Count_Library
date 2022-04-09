@@ -1,11 +1,9 @@
 package pckg.Class;
 
-import pckg.Interface.IFileContentOperation;
-
 import java.io.*;
 
 public class Reader {
-    private IFileContentOperation contentOperation;
+    private Validator validator;
     private String filePath;
 
     public Reader(String filePath) {
@@ -22,6 +20,8 @@ public class Reader {
 
     public String readFromFile(String filePath) throws IOException {
         String allContent = null;
+        validator = new Validator(filePath);
+        validator.isJavaFile();
         try(BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
@@ -35,8 +35,7 @@ public class Reader {
         } catch (IOException e) {
           throw new IOException("File can't be read");
         }
-
-        contentOperation.checkContentIsNotEmpty(allContent);
+        validator.isContentEmpty(allContent);
 
         return allContent;
     }
