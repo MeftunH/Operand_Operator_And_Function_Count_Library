@@ -6,7 +6,7 @@ public class Validator {
     private FileContentOperation contentOperation;
 
     public Validator(String fileName) {
-        this.contentOperation = new FileContentOperation(fileName);
+        this.contentOperation = new FileContentOperation();
         this.fileName = fileName;
     }
 
