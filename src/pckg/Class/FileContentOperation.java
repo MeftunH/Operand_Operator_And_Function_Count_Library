@@ -7,9 +7,5 @@ public class FileContentOperation {
         String unCommentedContent = fileContent.replaceAll("(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)","");
         return unCommentedContent;
     }
-    public byte[] getContentByteByByte(String fileContent) {
-        byte[] bytes = fileContent.getBytes(StandardCharsets.UTF_8);
-        return bytes;
-    }
 
 }
