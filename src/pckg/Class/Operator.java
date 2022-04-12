@@ -51,24 +51,6 @@ public class Operator {
         this.totalNumberOperators = totalNumberOperators;
     }
 
-    public int findOperators(String input) {
-
-        //Regex hali
-//        Pattern pattern = Pattern.compile(operatorPattern);
-//        Matcher matcher = pattern.matcher(input);
-//        while (matcher.find()) {
-//            operatorCounter++;
-//        }
-
-
-
-
-
-
-        System.out.println("Operator Counter22: " + getTotalNumberOfOperators(input));
-        return getTotalNumberOfOperators(input);
-    }
-
     private int getOperatorCount(String input, String[] operators) {
         int operatorCounter = 0;
         for (String operator : operators) {
@@ -86,6 +68,11 @@ public class Operator {
         int totalNumberOfSingleOperators=getOperatorCount(input, singleOperators);
         int totalNumberOfDualOperators=getOperatorCount(input, dualOperators);
         int totalNumberOfOperators=totalNumberOfSingleOperators+totalNumberOfDualOperators;
+        System.out.println("Operator{" +
+                "totalNumberOfSingleOperators=" + totalNumberOfSingleOperators +
+                ", totalNumberOfDualOperators=" + totalNumberOfDualOperators +
+                ", totalNumberOperators=" + totalNumberOfOperators +
+                '}');
         return totalNumberOfOperators;
     }
 
