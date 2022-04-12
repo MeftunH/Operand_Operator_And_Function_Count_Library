@@ -13,7 +13,7 @@ public class Operator {
 
     private int totalNumberOfSingleOperators;
     private int totalNumberOfDualOperators;
-    private int totalNumberOperators;
+    private int totalNumberOfOperators;
 
     public int getTotalNumberOfSingleOperators(String input){
         return totalNumberOfSingleOperators;
@@ -43,12 +43,12 @@ public class Operator {
         this.totalNumberOfDualOperators = getOperatorCount(input, dualOperators);;
     }
 
-    public int getTotalNumberOperators() {
+    public int getTotalNumberOfOperators() {
         return getTotalNumberOfDualOperators() + getTotalNumberOfSingleOperators();
     }
 
-    public void setTotalNumberOperators(int totalNumberOperators) {
-        this.totalNumberOperators = totalNumberOperators;
+    public void setTotalNumberOfOperators(int totalNumberOperators) {
+        this.totalNumberOfOperators = totalNumberOperators;
     }
 
     private int getOperatorCount(String input, String[] operators) {
@@ -65,9 +65,10 @@ public class Operator {
     }
 
     public int getTotalNumberOfOperators(String input){
-        int totalNumberOfSingleOperators=getOperatorCount(input, singleOperators);
-        int totalNumberOfDualOperators=getOperatorCount(input, dualOperators);
-        int totalNumberOfOperators=totalNumberOfSingleOperators+totalNumberOfDualOperators;
+        int totalNumberOfSingleOperators = getOperatorCount(input, singleOperators);
+        int totalNumberOfDualOperators = getOperatorCount(input, dualOperators);
+        int totalNumberOfOperators = totalNumberOfSingleOperators + totalNumberOfDualOperators;
+        setTotalNumberOfOperators(totalNumberOfOperators);
         System.out.println("Operator{" +
                 "totalNumberOfSingleOperators=" + totalNumberOfSingleOperators +
                 ", totalNumberOfDualOperators=" + totalNumberOfDualOperators +
