@@ -9,12 +9,12 @@ public class Operator {
 
     private String input;
     String[] SINGULAROperators = {"+", "-", "*", "/", "%", "&", "|", "^", "=", "<", ">", "!"};
-    String[] dualOperators = {"++", "--", "+=", "-=", "*=", "/=", "%=", "&=", "&&", "^=", "<=", ">=" ,"|=", "==", "!=", "||"};
+    String[] DUALOperators = {"++", "--", "+=", "-=", "*=", "/=", "%=", "&=", "&&", "^=", "<=", ">=" ,"|=", "==", "!=", "||"};
     OperatorType operatorType;
     
     
     private int totalNumberOfSINGULAROperators;
-    private int totalNumberOfDualOperators;
+    private int totalNumberOfDUALOperators;
     private int totalNumberOfOperators;
 
     public int getTotalNumberOfSINGULAROperators(String input){
@@ -33,20 +33,20 @@ public class Operator {
         return totalNumberOfSINGULAROperators;
     }
 
-    public int getTotalNumberOfDualOperators() {
-        return totalNumberOfDualOperators;
+    public int getTotalNumberOfDUALOperators() {
+        return totalNumberOfDUALOperators;
     }
 
-    public void setTotalNumberOfDualOperators(int totalNumberOfDualOperators) {
-        this.totalNumberOfDualOperators = totalNumberOfDualOperators;
+    public void setTotalNumberOfDUALOperators(int totalNumberOfDUALOperators) {
+        this.totalNumberOfDUALOperators = totalNumberOfDUALOperators;
     }
 
-    public void setTotalNumberOfDualOperators(String input) {
-        this.totalNumberOfDualOperators = getOperatorCount(input, OperatorType.Dual.elements,2);;
+    public void setTotalNumberOfDUALOperators(String input) {
+        this.totalNumberOfDUALOperators = getOperatorCount(input, OperatorType.DUAL.elements,2);;
     }
 
     public int getTotalNumberOfOperators() {
-        return getTotalNumberOfDualOperators() + getTotalNumberOfSINGULAROperators();
+        return getTotalNumberOfDUALOperators() + getTotalNumberOfSINGULAROperators();
     }
 
     public void setTotalNumberOfOperators(int totalNumberOperators) {
@@ -68,12 +68,12 @@ public class Operator {
 
     public int getTotalNumberOfOperators(String input){
         int totalNumberOfSINGULAROperators = getOperatorCount(input, SINGULAROperators,1);
-        int totalNumberOfDualOperators = getOperatorCount(input, dualOperators,2);
-        int totalNumberOfOperators = totalNumberOfSINGULAROperators + totalNumberOfDualOperators;
+        int totalNumberOfDUALOperators = getOperatorCount(input, DUALOperators,2);
+        int totalNumberOfOperators = totalNumberOfSINGULAROperators + totalNumberOfDUALOperators;
         setTotalNumberOfOperators(totalNumberOfOperators);
         System.out.println("Operator{" +
                 "totalNumberOfSINGULAROperators=" + totalNumberOfSINGULAROperators +
-                ", totalNumberOfDualOperators=" + totalNumberOfDualOperators +
+                ", totalNumberOfDUALOperators=" + totalNumberOfDUALOperators +
                 ", totalNumberOperators=" + totalNumberOfOperators +
                 '}');
         return totalNumberOfOperators;
