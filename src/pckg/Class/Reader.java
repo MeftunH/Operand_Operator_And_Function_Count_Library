@@ -36,7 +36,6 @@ public class Reader {
           throw new IOException("File can't be read");
         }
         validator.isContentEmpty(allContent);
-        System.out.println("File read successfully" + "content: " + allContent);
         return allContent;
     }
 
