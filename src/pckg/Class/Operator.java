@@ -8,29 +8,26 @@ import java.util.regex.Pattern;
 public class Operator {
 
     private String input;
-    String[] SINGULAROperators = {"+", "-", "*", "/", "%", "&", "|", "^", "=", "<", ">", "!"};
-    String[] DUALOperators = {"++", "--", "+=", "-=", "*=", "/=", "%=", "&=", "&&", "^=", "<=", ">=" ,"|=", "==", "!=", "||"};
-    OperatorType operatorType;
     
     
-    private int totalNumberOfSINGULAROperators;
+    private int totalNumberOfSingularOperators;
     private int totalNumberOfDUALOperators;
     private int totalNumberOfOperators;
 
-    public int getTotalNumberOfSINGULAROperators(String input){
-        return totalNumberOfSINGULAROperators;
+    public int getTotalNumberOfSingularOperators(String input){
+        return totalNumberOfSingularOperators;
     }
 
-    public void setTotalNumberOfSINGULAROperators(int totalNumberOfSINGULAROperators) {
-        this.totalNumberOfSINGULAROperators = totalNumberOfSINGULAROperators;
+    public void setTotalNumberOfSingularOperators(int totalNumberOfSingularOperators) {
+        this.totalNumberOfSingularOperators = totalNumberOfSingularOperators;
     }
 
-    public void setTotalNumberOfSINGULAROperators(String input) {
-        this.totalNumberOfSINGULAROperators = getOperatorCount(input, OperatorType.SINGULAR.elements,1);
+    public void setTotalNumberOfSingularOperators(String input) {
+        this.totalNumberOfSingularOperators = getOperatorCount(input, OperatorType.SINGULAR);
     }
 
-    public int getTotalNumberOfSINGULAROperators() {
-        return totalNumberOfSINGULAROperators;
+    public int getTotalNumberOfSingularOperators() {
+        return totalNumberOfSingularOperators;
     }
 
     public int getTotalNumberOfDUALOperators() {
@@ -42,24 +39,28 @@ public class Operator {
     }
 
     public void setTotalNumberOfDUALOperators(String input) {
-        this.totalNumberOfDUALOperators = getOperatorCount(input, OperatorType.DUAL.elements,2);;
+        this.totalNumberOfDUALOperators = getOperatorCount(input,OperatorType.DUAL);;
     }
 
     public int getTotalNumberOfOperators() {
-        return getTotalNumberOfDUALOperators() + getTotalNumberOfSINGULAROperators();
+        return getTotalNumberOfDUALOperators() + getTotalNumberOfSingularOperators();
     }
 
     public void setTotalNumberOfOperators(int totalNumberOperators) {
         this.totalNumberOfOperators = totalNumberOperators;
     }
 
-    private int getOperatorCount(String input, String[] operators, int numberOfJump) {
+    private int getOperatorCount(String input, OperatorType operatorType){
+
         int operatorCounter = 0;
-        for (String operator : operators) {
+        for (String operator : operatorType.elements) {
+            int nextIndex = 0;
             int index = input.indexOf(operator);
             while (index != -1) {
-                operatorCounter++;
-                input = input.substring(index + numberOfJump);
+                if (operatorType.equals(OperatorType.SINGULAR)) {
+                    operatorCounter++;
+                }
+                input = input.substring(index + operatorType.numberOfIteration);
                 index = input.indexOf(operator);
             }
         }
@@ -67,12 +68,12 @@ public class Operator {
     }
 
     public int getTotalNumberOfOperators(String input){
-        int totalNumberOfSINGULAROperators = getOperatorCount(input, SINGULAROperators,1);
-        int totalNumberOfDUALOperators = getOperatorCount(input, DUALOperators,2);
-        int totalNumberOfOperators = totalNumberOfSINGULAROperators + totalNumberOfDUALOperators;
+        int totalNumberOfSingularOperators = getOperatorCount(input, OperatorType.SINGULAR);
+        int totalNumberOfDUALOperators = getOperatorCount(input, OperatorType.DUAL);
+        int totalNumberOfOperators = totalNumberOfSingularOperators + totalNumberOfDUALOperators;
         setTotalNumberOfOperators(totalNumberOfOperators);
         System.out.println("Operator{" +
-                "totalNumberOfSINGULAROperators=" + totalNumberOfSINGULAROperators +
+                "totalNumberOfSingularOperators=" + totalNumberOfSingularOperators +
                 ", totalNumberOfDUALOperators=" + totalNumberOfDUALOperators +
                 ", totalNumberOperators=" + totalNumberOfOperators +
                 '}');
