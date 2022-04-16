@@ -27,5 +27,8 @@ public class Program {
                         fileContentOperation.
                                 getContentWithoutStringContent(reader.readFromFile("src/pckg/Testing.java"))));
 
+        Operand operand = new Operand(fileContentOperation.
+                getContentWithoutStringContent(reader.readFromFile("src/pckg/Testing.java")));
+
     }
 }

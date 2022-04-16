@@ -9,6 +9,8 @@ public class Testing {
     int d=b-a;
     if (1 != 3 && d == b || c == a) {
       System.out.println("Hello, World!");
+      a+=1;
+      b+=1;
       System.out.println("a " + 1 + 2);
     }
     if (1 != 2) {

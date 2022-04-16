@@ -12,6 +12,10 @@ public class FileContentOperation {
         String withoutStringContent = fileContent.replaceAll("\"[^\"]*\"","");
         return withoutStringContent;
     }
+    public String removeWhiteSpace(String fileContent) {
+        String withoutWhiteSpace = fileContent.replaceAll("\\s+","");
+        return withoutWhiteSpace;
+    }
 
 //    public String getClassName(String fileContent) {
 //        String className = fileContent.split("class")[1].split("\\{")[0].trim();
