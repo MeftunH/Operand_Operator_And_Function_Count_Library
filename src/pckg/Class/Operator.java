@@ -54,12 +54,25 @@ public class Operator {
 
         int operatorCounter = 0;
         for (String operator : operatorType.elements) {
-            int nextIndex = 0;
             int index = input.indexOf(operator);
             while (index != -1) {
-                if (operatorType.equals(OperatorType.SINGULAR)) {
+                if (operatorType.equals(OperatorType.SINGULAR) || operatorType.equals(OperatorType.SINGULAR_DIGITAL)
+                      || operatorType.equals(OperatorType.SINGULAR_LOGICAL) || operatorType.equals(OperatorType.SINGULAR_RELATIONAL)) {
+                    String nextChar = String.valueOf(input.charAt(index + 1));
+                    String prevChar = String.valueOf(input.charAt(index - 1));
+                    if(!(nextChar.equals("+") || nextChar.equals("=") || nextChar.equals("-") || nextChar.equals("&") || nextChar.equals("|"))){
+                        operatorCounter++;
+                        for (String singularOperator : OperatorType.SINGULAR.elements) {
+                            if ((prevChar.equals(singularOperator))) {
+                                operatorCounter--;
+                                System.out.println("operator" + operator + " found at index " + index + "nextChar" + nextChar + "prevChar" + prevChar);
+                            }
+                        }
+                    }
+                } else {
                     operatorCounter++;
                 }
+
                 input = input.substring(index + operatorType.numberOfIteration);
                 index = input.indexOf(operator);
             }
