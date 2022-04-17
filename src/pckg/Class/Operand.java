@@ -24,12 +24,10 @@ public class Operand {
         }
 
         removeDualOperatorOperands();
-        System.out.println("input: " + input);
         for (String operator : OperatorType.SINGULAR.elements) {
             operandCounter+=findOperandOccurrences(operator,1,OperatorType.SINGULAR);
         }
-        System.out.println("operandCounter singular: " + (operandCounter-1));
-        return operandCounter-1;
+        return operandCounter;
     }
 
     private void removeDualOperatorOperands(){

@@ -1,8 +1,11 @@
 package pckg.Class;
 
+import org.mockito.InjectMocks;
+
 import java.io.*;
 
 public class Reader {
+    @InjectMocks
     private Validator validator;
     private String filePath;
 
@@ -22,6 +25,7 @@ public class Reader {
         String allContent = null;
         validator = new Validator(filePath);
         validator.isJavaFile();
+        validator.isFileExist();
         try(BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();

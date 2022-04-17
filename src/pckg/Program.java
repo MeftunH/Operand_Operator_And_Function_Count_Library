@@ -17,6 +17,7 @@ public class Program {
 
         Operator operator = new Operator(fileContentOperation.getContentWithoutStringContent(reader.readFromFile("src/pckg/Testing.java")));
 
+        System.out.println("operator = " +   operator.getTotalNumberOfOperators());
         System.out.println(fileContentOperation.
                 getUncommentedContent(
                         fileContentOperation.

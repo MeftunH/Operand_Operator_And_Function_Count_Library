@@ -1,17 +1,20 @@
 package pckg.Class;
 
-public class Operator {
+import org.mockito.InjectMocks;
 
+public class Operator {
+    @InjectMocks
     private String input;
+    private FileContentOperation fileContentOperation;
     private int totalNumberOfSingularOperators;
-    private int totalNumberOfDUALOperators;
+    private int totalNumberOfDualOperators;
     private int totalNumberOfDigitalOperators;
     private int totalNumberOfRelationalOperators;
     private int totalNumberOfLogicalOperators;
     private int totalNumberOfOperators;
 
     public Operator(String input){
-        FileContentOperation fileContentOperation = new FileContentOperation();
+        this.fileContentOperation = new FileContentOperation();
 
         this.input = fileContentOperation.getContentWithoutStringContent(fileContentOperation.getUncommentedContent(input));
 
@@ -22,11 +25,29 @@ public class Operator {
     }
 
     public int getTotalNumberOfSingularOperators() {
+        setTotalNumberOfSingularOperators(getOperatorCount(OperatorType.SINGULAR));
         return totalNumberOfSingularOperators;
     }
 
-    public int getTotalNumberOfDUALOperators() {
-        return totalNumberOfDUALOperators;
+    public int getTotalNumberOfDualOperators() {
+        setTotalNumberOfDualOperators(getOperatorCount(OperatorType.DUAL));
+        return totalNumberOfDualOperators;
+    }
+
+    public void setTotalNumberOfDualOperators(int totalNumberOfDualOperators) {
+        this.totalNumberOfDualOperators = totalNumberOfDualOperators;
+    }
+
+    public void setTotalNumberOfDigitalOperators(int totalNumberOfDigitalOperators) {
+        this.totalNumberOfDigitalOperators = totalNumberOfDigitalOperators;
+    }
+
+    public void setTotalNumberOfRelationalOperators(int totalNumberOfRelationalOperators) {
+        this.totalNumberOfRelationalOperators = totalNumberOfRelationalOperators;
+    }
+
+    public void setTotalNumberOfLogicalOperators(int totalNumberOfLogicalOperators) {
+        this.totalNumberOfLogicalOperators = totalNumberOfLogicalOperators;
     }
 
     public int getTotalNumberOfRelationalOperators() {
@@ -35,7 +56,9 @@ public class Operator {
     }
 
     public int getTotalNumberOfOperators() {
-        return getTotalNumberOfDUALOperators() + getTotalNumberOfSingularOperators();
+        int totalNumberOfSingularOperators = getOperatorCount(OperatorType.SINGULAR);
+        int totalNumberOfDualOperators = getOperatorCount(OperatorType.DUAL);
+        return totalNumberOfOperators = totalNumberOfSingularOperators + totalNumberOfDualOperators;
     }
     public int getTotalNumberOfLogicalOperators() {
         totalNumberOfLogicalOperators = getOperatorCount(OperatorType.SINGULAR_LOGICAL) + getOperatorCount(OperatorType.DUAL_LOGICAL);
@@ -94,15 +117,15 @@ public class Operator {
     }
     public int getTotalNumberOfOperator(){
         int totalNumberOfSingularOperators = getOperatorCount(OperatorType.SINGULAR);
-        int totalNumberOfDUALOperators = getOperatorCount(OperatorType.DUAL);
-        int totalNumberOfOperators = totalNumberOfSingularOperators + totalNumberOfDUALOperators;
+        int totalNumberOfDualOperators = getOperatorCount(OperatorType.DUAL);
+        int totalNumberOfOperators = totalNumberOfSingularOperators + totalNumberOfDualOperators;
         int totalNumberOfDigitalOperators = getTotalNumberOfDigitalOperators();
         int totalNumberOfRelationalOperators = getTotalNumberOfRelationalOperators();
         int totalNumberOfLogicalOperators = getTotalNumberOfLogicalOperators();
         setTotalNumberOfOperators(totalNumberOfOperators);
         System.out.println("Operator{" +
                 "totalNumberOfSingularOperators=" + totalNumberOfSingularOperators +
-                ", totalNumberOfDUALOperators=" + totalNumberOfDUALOperators +
+                ", totalNumberOfDualOperators=" + totalNumberOfDualOperators +
                 ", totalNumberOperators=" + totalNumberOfOperators +
                 ", totalNumberOfDigitalOperators=" + totalNumberOfDigitalOperators +
                 ", totalNumberOfRelationalOperators=" + totalNumberOfRelationalOperators +

@@ -1,7 +1,7 @@
 package pckg.Class;
 
-import javax.tools.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class Validator {
 
@@ -32,30 +32,26 @@ public class Validator {
 
     private String getFileExtension(String fileName) {
         String extension = "";
-        extension = fileName.replaceAll("^.*\\.(.*)$", "$1");
+        extension = this.fileName.replaceAll("^.*\\.(.*)$", "$1");
         return extension;
     }
 
     public boolean isContentEmpty(String fileContent) throws IllegalArgumentException {
              String unCommentedContent = contentOperation.getUncommentedContent(fileContent);
-            if (fileContent.isEmpty() || unCommentedContent.isEmpty()){
+            if (unCommentedContent.isEmpty()){
             throw new IllegalArgumentException("File is empty");
+        }
+        return false;
+    }
+
+    public boolean isFileExist() throws FileNotFoundException {
+        File file = new File(fileName);
+        if (!file.exists()){
+            throw new FileNotFoundException("File does not exist");
         }
         return true;
     }
 
-
-
-
-//    @Override
-//    public boolean isFileExist() throws IllegalArgumentException {
-//        File file = new File(getFileName());
-//        if (!file.exists()){
-//            throw new IllegalArgumentException("File does not exist");
-//        }
-//        return true;
-//    }
-//
 //    @Override
 //    public boolean isFileReadable() throws IllegalArgumentException {
 //        File file = new File(getFileName());
