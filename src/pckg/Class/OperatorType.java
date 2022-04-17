@@ -14,7 +14,8 @@ public enum OperatorType {
     DUAL_DIGITAL("DUAL_DIGITAL",1,new String[]{"++", "--", "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^="}),
     DUAL_RELATIONAL("DUAL_RELATIONAL",1,new String[]{"<=", ">=", "==", "!="}),
     DUAL_LOGICAL("DUAL_LOGICAL",1,new String[]{"&&", "||"}),
-    DUAL("DUAL",1,new String[]{"++", "--", "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=","<=", ">=", "==", "!=","&&", "||"});
+    DUAL("DUAL",1,new String[]{"++", "--", "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=","<=", ">=", "==", "!=","&&", "||"}),
+    DUAL_WITH_SINGLE_OPERAND("DUAL_WITH_SINGLE_OPERAND",1,new String[]{"++", "--"});
 
 
     private static final Map<String, OperatorType> BY_LABEL = new HashMap<>();

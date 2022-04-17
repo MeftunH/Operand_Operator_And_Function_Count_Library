@@ -29,6 +29,7 @@ public class Program {
 
         Operand operand = new Operand(fileContentOperation.
                 getContentWithoutStringContent(reader.readFromFile("src/pckg/Testing.java")));
+        operand.getOperandCount();
 
     }
 }

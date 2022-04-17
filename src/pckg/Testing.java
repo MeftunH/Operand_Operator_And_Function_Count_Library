@@ -2,19 +2,16 @@ package pckg;
 
 public class Testing {
   public static void main(String[] args) {
-
-    int a = 5;
-    int b = 6;
+    int a=5;
+    int b=6;
     int c=a+b;
-    int d=b-a;
-    if (1 != 3 && d == b || c == a) {
-      System.out.println("Hello, World!");
-      a+=1;
-      b+=1;
-      System.out.println("a " + 1 + 2);
+    b^=2;
+    b++;
+    b+=2;
+    a--;
+    if (c==b || c==b+1 && c==b+2 || c==b+3) {
+      System.out.println("a+b=c");
     }
-    if (1 != 2) {
-      System.out.println("Hello, World!");
-    }
+
   }
 }

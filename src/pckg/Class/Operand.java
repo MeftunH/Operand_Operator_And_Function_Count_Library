@@ -1,52 +1,82 @@
 package pckg.Class;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.IllegalFormatCodePointException;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Operand {
-    private FileContentOperation fileContentOperation;
     private String input;
     public int operandCounter;
     public Operand(String input) {
-        this.input = fileContentOperation.
-                getContentWithoutStringContent(fileContentOperation.
-                getUncommentedContent(fileContentOperation.removeWhiteSpace(input)));
+        FileContentOperation fileContentOperation = new FileContentOperation();
+        this.input = fileContentOperation.removeWhiteSpace(fileContentOperation.getContentWithoutStringContent(fileContentOperation.getUncommentedContent(input)));
         operandCounter = 0;
     }
 
-    public int getOperandCounter() {
-        return operandCounter;
+    public int getOperandCount() {
+        int operandCounter = 0;
+
+        for (String operator : OperatorType.DUAL.elements) {
+            operandCounter+=findOperandOccurrences(operator,2,OperatorType.DUAL);
+        }
+
+        removeDualOperatorOperands();
+        System.out.println("input: " + input);
+        for (String operator : OperatorType.SINGULAR.elements) {
+            operandCounter+=findOperandOccurrences(operator,1,OperatorType.SINGULAR);
+        }
+        System.out.println("operandCounter singular: " + (operandCounter-1));
+        return operandCounter-1;
     }
 
-    public int findOperandOccurrences(String subString) {
-        int operandOccurrences = 0;
-        int lastIndex = 0;
-        int count = 0;
+    private void removeDualOperatorOperands(){
 
-        while (lastIndex != -1) {
-            lastIndex = input.indexOf(subString, lastIndex);
+        Pattern pattern = Pattern.compile(
+                        "\\+\\+|--|" +          // ++ --
+                        "\\+=|-=|\\*=|" +       // += -= *=
+                        "/=|%=|&=|\\^=|" +      // /= %= &= ^=
+                        "\\|=|" +               // |=
+                        "==|!=|<=|>=|" +        // == != <= >=
+                        "&&|\\|\\||" +          // && ||
+                        "instanceof"            // instanceof
+        );
+            Matcher matcher = pattern.matcher(input);
+            while (matcher.find()) {
+               input = matcher.replaceAll("");
+            }
+    }
 
-            if (lastIndex != -1) {
-                String nextChar = String.valueOf(input.charAt(lastIndex + 1));
-                String prevChar = String.valueOf(input.charAt(lastIndex - 1));
-                lastIndex += subString.length();
+    public int findOperandOccurrences(String subString,int iterateCount,OperatorType operatorType){
+        operandCounter = 0;
 
-                if (isCharacterLetterOrDigit(nextChar) || isCharacterLetterOrDigit(prevChar)) {
-                    operandCounter++;
+        for (int i = -1; (i = input.indexOf(subString, i + 1)) != -1; i++) {
+
+            String nextChar = String.valueOf(input.charAt(i+1));
+            String prevChar = String.valueOf(input.charAt(i-1));
+
+            if((isCharacterLetterOrDigit(prevChar) || isCharacterLetterOrDigit(nextChar))){
+                if (subString.equals("++") || subString.equals("--")) {
+                    operandCounter = operandCounter + 1;
+                }
+                else if(subString.equals("&&") || subString.equals("||")){
+                    operandCounter = operandCounter - 1;
+                }
+                else {
+                    operandCounter = operandCounter + 2;
                 }
             }
         }
+
+
         return operandCounter;
     }
-    private boolean isCharacterLetterOrDigit(String character) {
-        String regex = "^[a-zA-Z0-9]+$";
-        Pattern pattern = Pattern.compile(regex);
 
-        Matcher matcher = pattern.matcher(character);
-
-        return matcher.matches();
+    private boolean isCharacterLetterOrDigit(String character){
+        return character.matches("[a-zA-Z0-9]");
     }
-
     @Override
     public String toString() {
         return "Operand{" +
