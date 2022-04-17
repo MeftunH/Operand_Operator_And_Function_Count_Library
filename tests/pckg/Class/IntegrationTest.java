@@ -21,15 +21,15 @@ public class IntegrationTest {
 
     @BeforeEach
     public void setUp() throws IOException {
-        reader = new Reader("src/pckg/Testing.java");
+        reader = new Reader("tests/pckg/Testing.java");
         fileContentOperation = new FileContentOperation();
-        operator = new Operator(fileContentOperation.getContentWithoutStringContent(reader.readFromFile("src/pckg/Testing.java")));
-        validator = new Validator("src/pckg/Testing.java");
+        operator = new Operator(fileContentOperation.getContentWithoutStringContent(reader.readFromFile("tests/pckg/Testing.java")));
+        validator = new Validator("tests/pckg/Testing.java");
     }
 
     @Test
     public void isContentEmptyTest() throws IOException {
-       assertFalse(validator.isContentEmpty(reader.readFromFile("src/pckg/Testing.java")));
+       assertFalse(validator.isContentEmpty(reader.readFromFile("tests/pckg/Testing.java")));
     }
 
     @Test

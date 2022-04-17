@@ -9,9 +9,10 @@ import java.util.regex.Pattern;
 
 public class Operand {
     private String input;
+    private FileContentOperation fileContentOperation;
     public int operandCounter;
     public Operand(String input) {
-        FileContentOperation fileContentOperation = new FileContentOperation();
+        fileContentOperation = new FileContentOperation();
         this.input = fileContentOperation.removeWhiteSpace(fileContentOperation.getContentWithoutStringContent(fileContentOperation.getUncommentedContent(input)));
         operandCounter = 0;
     }
@@ -72,13 +73,7 @@ public class Operand {
         return operandCounter;
     }
 
-    private boolean isCharacterLetterOrDigit(String character){
+    public boolean isCharacterLetterOrDigit(String character){
         return character.matches("[a-zA-Z0-9]");
-    }
-    @Override
-    public String toString() {
-        return "Operand{" +
-                "operandCounter=" + operandCounter +
-                '}';
     }
 }

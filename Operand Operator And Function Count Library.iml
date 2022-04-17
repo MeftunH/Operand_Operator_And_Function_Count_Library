@@ -53,5 +53,15 @@
         <jarDirectory url="file://$USER_HOME$/OneDrive/Documents/mockito" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/OneDrive/Documents/hamcrest-2.2" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$USER_HOME$/OneDrive/Documents/hamcrest-2.2" recursive="false" />
+      </library>
+    </orderEntry>
   </component>
 </module>

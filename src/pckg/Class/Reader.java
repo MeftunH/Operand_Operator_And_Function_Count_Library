@@ -5,7 +5,6 @@ import org.mockito.InjectMocks;
 import java.io.*;
 
 public class Reader {
-    @InjectMocks
     private Validator validator;
     private String filePath;
 
@@ -24,8 +23,8 @@ public class Reader {
     public String readFromFile(String filePath) throws IOException {
         String allContent = null;
         validator = new Validator(filePath);
-        validator.isJavaFile();
         validator.isFileExist();
+        validator.isJavaFile();
         try(BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();

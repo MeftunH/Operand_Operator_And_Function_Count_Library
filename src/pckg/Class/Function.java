@@ -24,7 +24,6 @@ public class Function {
             functions.add(spliteEnd);
             functionCounter++;
         }
-        System.out.println("Function counter: " + functionCounter);
         return functionCounter;
     }
 }

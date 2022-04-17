@@ -15,13 +15,12 @@ class FileContentOperationTest {
 
  @BeforeEach
  public void setUp() throws IOException {
-   reader = new Reader("src/pckg/Testing.java");
+   reader = new Reader("tests/pckg/Testing.java");
   fileContentOperation = new FileContentOperation();
-  validator = new Validator("src/pckg/Testing.java");
+  validator = new Validator("tests/pckg/Testing.java");
  }
  @Test
  void isJavaFileTest() {
-  System.out.println("isJavaFileTest:"+validator.getFileName());
   assertTrue(validator.isJavaFile());
  }
 

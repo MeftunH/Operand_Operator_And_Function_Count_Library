@@ -4,8 +4,9 @@ import org.mockito.InjectMocks;
 
 public class Operator {
     @InjectMocks
-    private String input;
     private FileContentOperation fileContentOperation;
+
+    private String input;
     private int totalNumberOfSingularOperators;
     private int totalNumberOfDualOperators;
     private int totalNumberOfDigitalOperators;
@@ -14,8 +15,7 @@ public class Operator {
     private int totalNumberOfOperators;
 
     public Operator(String input){
-        this.fileContentOperation = new FileContentOperation();
-
+        fileContentOperation = new FileContentOperation();
         this.input = fileContentOperation.getContentWithoutStringContent(fileContentOperation.getUncommentedContent(input));
 
     }
@@ -123,15 +123,7 @@ public class Operator {
         int totalNumberOfRelationalOperators = getTotalNumberOfRelationalOperators();
         int totalNumberOfLogicalOperators = getTotalNumberOfLogicalOperators();
         setTotalNumberOfOperators(totalNumberOfOperators);
-        System.out.println("Operator{" +
-                "totalNumberOfSingularOperators=" + totalNumberOfSingularOperators +
-                ", totalNumberOfDualOperators=" + totalNumberOfDualOperators +
-                ", totalNumberOperators=" + totalNumberOfOperators +
-                ", totalNumberOfDigitalOperators=" + totalNumberOfDigitalOperators +
-                ", totalNumberOfRelationalOperators=" + totalNumberOfRelationalOperators +
-                "\n"+
-                ", totalNumberOfLogicalOperators=" + totalNumberOfLogicalOperators +
-                '}');
+
         return totalNumberOfOperators;
     }
 }
