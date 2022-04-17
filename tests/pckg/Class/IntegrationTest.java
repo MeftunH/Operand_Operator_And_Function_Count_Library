@@ -22,8 +22,8 @@ public class IntegrationTest {
     @BeforeEach
     public void setUp() throws IOException {
         reader = new Reader("src/pckg/Testing.java");
-        fileContentOperation = new FileContentOperation(reader.readFromFile("src/pckg/Testing.java"));
-        operator = new Operator(fileContentOperation.getContentWithoutStringContent());
+        fileContentOperation = new FileContentOperation();
+        operator = new Operator(fileContentOperation.getContentWithoutStringContent(reader.readFromFile("src/pckg/Testing.java")));
         validator = new Validator("src/pckg/Testing.java");
     }
 

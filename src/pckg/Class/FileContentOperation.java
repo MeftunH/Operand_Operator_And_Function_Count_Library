@@ -3,22 +3,16 @@ package pckg.Class;
 import java.nio.charset.StandardCharsets;
 
 public class FileContentOperation {
-    private String fileContent;
-
-    public FileContentOperation(String fileContent) {
-        this.fileContent = fileContent;
-    }
-
-    public String getUncommentedContent() {
+    public String getUncommentedContent(String fileContent) {
         String unCommentedContent = fileContent.replaceAll("(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)","");
         return unCommentedContent;
     }
 
-    public String getContentWithoutStringContent() {
+    public String getContentWithoutStringContent(String fileContent) {
         String withoutStringContent = fileContent.replaceAll("\"[^\"]*\"","");
         return withoutStringContent;
     }
-    public String removeWhiteSpace() {
+    public String removeWhiteSpace(String fileContent) {
         String withoutWhiteSpace = fileContent.replaceAll("\\s+","");
         return withoutWhiteSpace;
     }
