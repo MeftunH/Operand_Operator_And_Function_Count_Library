@@ -12,6 +12,12 @@ public class Testing {
     if (c==b || c==b+1 && c==b+2 || c==b+3) {
       System.out.println("a+b=c");
     }
+  }
+  private void test() {
 
+  }
+  private int test2() {
+  int a=5;
+  return a;
   }
 }

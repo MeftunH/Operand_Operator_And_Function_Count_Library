@@ -31,5 +31,7 @@ public class Program {
                 getContentWithoutStringContent(reader.readFromFile("src/pckg/Testing.java")));
         operand.getOperandCount();
 
+        Function function = new Function();
+        function.getFunctionCounter(fileContentOperation.getContentWithoutStringContent(reader.readFromFile("src/pckg/Testing.java")));
     }
 }
