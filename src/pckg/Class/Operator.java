@@ -3,8 +3,6 @@ package pckg.Class;
 public class Operator {
 
     private String input;
-    
-    
     private int totalNumberOfSingularOperators;
     private int totalNumberOfDUALOperators;
     private int totalNumberOfDigitalOperators;
@@ -12,16 +10,15 @@ public class Operator {
     private int totalNumberOfLogicalOperators;
     private int totalNumberOfOperators;
 
-    public int getTotalNumberOfSingularOperators(String input){
-        return totalNumberOfSingularOperators;
+    public Operator(String input){
+        FileContentOperation fileContentOperation = new FileContentOperation();
+
+        this.input = fileContentOperation.getContentWithoutStringContent(fileContentOperation.getUncommentedContent(input));
+
     }
 
     public void setTotalNumberOfSingularOperators(int totalNumberOfSingularOperators) {
         this.totalNumberOfSingularOperators = totalNumberOfSingularOperators;
-    }
-
-    public void setTotalNumberOfSingularOperators(String input) {
-        this.totalNumberOfSingularOperators = getOperatorCount(input, OperatorType.SINGULAR);
     }
 
     public int getTotalNumberOfSingularOperators() {
@@ -32,37 +29,21 @@ public class Operator {
         return totalNumberOfDUALOperators;
     }
 
-    public void setTotalNumberOfDUALOperators(int totalNumberOfDUALOperators) {
-        this.totalNumberOfDUALOperators = totalNumberOfDUALOperators;
-    }
-
-    public void setTotalNumberOfDUALOperators(String input) {
-        this.totalNumberOfDUALOperators = getOperatorCount(input,OperatorType.DUAL);;
-    }
-
-    public int getTotalNumberOfRelationalOperators(String input) {
-        totalNumberOfRelationalOperators = getOperatorCount(input, OperatorType.SINGULAR_RELATIONAL) + getOperatorCount(input, OperatorType.DUAL_RELATIONAL);
+    public int getTotalNumberOfRelationalOperators() {
+        totalNumberOfRelationalOperators = getOperatorCount(OperatorType.SINGULAR_RELATIONAL) + getOperatorCount(OperatorType.DUAL_RELATIONAL);
         return totalNumberOfRelationalOperators;
-    }
-
-    public void setTotalNumberOfRelationalOperators(int totalNumberOfRelationalOperators) {
-        this.totalNumberOfRelationalOperators = totalNumberOfRelationalOperators;
     }
 
     public int getTotalNumberOfOperators() {
         return getTotalNumberOfDUALOperators() + getTotalNumberOfSingularOperators();
     }
-    public int getTotalNumberOfLogicalOperators(String input) {
-        totalNumberOfLogicalOperators = getOperatorCount(input, OperatorType.SINGULAR_LOGICAL) + getOperatorCount(input, OperatorType.DUAL_LOGICAL);
+    public int getTotalNumberOfLogicalOperators() {
+        totalNumberOfLogicalOperators = getOperatorCount(OperatorType.SINGULAR_LOGICAL) + getOperatorCount(OperatorType.DUAL_LOGICAL);
         return totalNumberOfLogicalOperators;
     }
 
-    public void setTotalNumberOfLogicalOperators(int totalNumberOfLogicalOperators) {
-        this.totalNumberOfLogicalOperators = totalNumberOfLogicalOperators;
-    }
-
-    public int getTotalNumberOfDigitalOperators(String input) {
-        totalNumberOfDigitalOperators = getOperatorCount(input, OperatorType.SINGULAR_DIGITAL) + getOperatorCount(input, OperatorType.DUAL_DIGITAL);
+    public int getTotalNumberOfDigitalOperators() {
+        totalNumberOfDigitalOperators = getOperatorCount( OperatorType.SINGULAR_DIGITAL) + getOperatorCount( OperatorType.DUAL_DIGITAL);
         return totalNumberOfDigitalOperators;
     }
 
@@ -70,23 +51,23 @@ public class Operator {
         this.totalNumberOfOperators = totalNumberOperators;
     }
 
-    private int getOperatorCount(String input, OperatorType operatorType){
+    private int getOperatorCount(OperatorType operatorType){
 
         int operatorCounter = 0;
 
         for (String operator : operatorType.elements) {
-            operatorCounter+=findOperatorSubstringCounter(input,operator,operatorType);
+            operatorCounter+=findOperatorSubstringCounter(operator,operatorType);
         }
         return operatorCounter;
     }
 
-    private int findOperatorSubstringCounter(String input, String substring,OperatorType operatorType) {
+    private int findOperatorSubstringCounter(String substring,OperatorType operatorType) {
         int lastIndex = 0;
         int count = 0;
 
         while(lastIndex != -1){
 
-            lastIndex = input.indexOf(substring,lastIndex);
+            lastIndex = this.input.indexOf(substring,lastIndex);
 
             if(lastIndex != -1){
                 if (operatorType.equals(OperatorType.SINGULAR) || operatorType.equals(OperatorType.SINGULAR_DIGITAL)
@@ -111,13 +92,13 @@ public class Operator {
         return count;
 
     }
-    public int getTotalNumberOfOperators(String input){
-        int totalNumberOfSingularOperators = getOperatorCount(input, OperatorType.SINGULAR);
-        int totalNumberOfDUALOperators = getOperatorCount(input, OperatorType.DUAL);
+    public int getTotalNumberOfOperator(){
+        int totalNumberOfSingularOperators = getOperatorCount(OperatorType.SINGULAR);
+        int totalNumberOfDUALOperators = getOperatorCount(OperatorType.DUAL);
         int totalNumberOfOperators = totalNumberOfSingularOperators + totalNumberOfDUALOperators;
-        int totalNumberOfDigitalOperators = getTotalNumberOfDigitalOperators(input);
-        int totalNumberOfRelationalOperators = getTotalNumberOfRelationalOperators(input);
-        int totalNumberOfLogicalOperators = getTotalNumberOfLogicalOperators(input);
+        int totalNumberOfDigitalOperators = getTotalNumberOfDigitalOperators();
+        int totalNumberOfRelationalOperators = getTotalNumberOfRelationalOperators();
+        int totalNumberOfLogicalOperators = getTotalNumberOfLogicalOperators();
         setTotalNumberOfOperators(totalNumberOfOperators);
         System.out.println("Operator{" +
                 "totalNumberOfSingularOperators=" + totalNumberOfSingularOperators +

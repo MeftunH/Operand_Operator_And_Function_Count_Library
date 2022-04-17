@@ -15,17 +15,14 @@ public class Program {
                         fileContentOperation.
                                 getContentWithoutStringContent(reader.readFromFile("src/pckg/Testing.java"))));
 
-        Operator operator = new Operator();
+        Operator operator = new Operator(fileContentOperation.getContentWithoutStringContent(reader.readFromFile("src/pckg/Testing.java")));
 
         System.out.println(fileContentOperation.
                 getUncommentedContent(
                         fileContentOperation.
                                 getContentWithoutStringContent(reader.readFromFile("src/pckg/Testing.java"))));
 
-        operator.getTotalNumberOfOperators(fileContentOperation.
-                getUncommentedContent(
-                        fileContentOperation.
-                                getContentWithoutStringContent(reader.readFromFile("src/pckg/Testing.java"))));
+        operator.getTotalNumberOfOperator();
 
         Operand operand = new Operand(fileContentOperation.
                 getContentWithoutStringContent(reader.readFromFile("src/pckg/Testing.java")));
